@@ -1,0 +1,49 @@
+{
+  "powerLoopInterval": 60,
+  "controlLoopInterval": 15,
+  "monitoringLoopInterval": 5,
+  "timeSlotWidth": 15,
+  "timeWindowWidth": 24,
+	"hdbUrl": "http://myhdb.example.com:9999",
+  "hdbEnabled": true,
+  "companyCode": "mycompany",
+  "dataCenters": [ {
+	"name": "AmazonEC2",
+	"minPower": "1000",
+	"maxPower": "2000",
+	"pue": 1.5,
+	"erdsList": [ {
+	  "name": "grid",
+	  "endpoint": "http://grid.myenergyprovider1.com"
+	} ],
+	"eascGroups": [ {
+	  "name": "group1",
+	  "groupWeight": 1,
+	  "eascWeights": [ {
+		"eascName": "EASC-IaaS",
+		"weight": 3
+	  } ]
+	} ]
+  }, {
+	"name": "MsAzure",
+	"minPower": "500",
+	"maxPower": "1000",
+	"pue": 1.2,
+	"erdsList": [ {
+	  "name": "grid2",
+	  "endpoint": "http://grid.myenergyprovider2.com"
+	} ],
+	"eascGroups": [ {
+	  "name": "group1",
+	  "groupWeight": 1,
+	  "eascWeights": [ {
+		"eascName": "EASC-IaaS",
+		"weight": 1
+	  } ]
+	} ]
+  } ],
+  "eascList": [ {
+	"name": "EASC-IaaS",
+	"endpoint": "http://easc1.mycompany.com"
+  } ]
+}

@@ -1,0 +1,276 @@
+!Application
+name: EASC-CSUC
+activities:
+- name: VideoTranscoding
+  businessUnit: Gbit
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '55 Gbit'
+    basePrice: !amount '5 EUR'
+    priceModifiers:
+    - threshold: !amount '55 Gbit'
+      modifier: !amount '0 EUR/Gbit'
+    - threshold: !amount '0 Gbit'
+      modifier: !amount '-0.09 EUR/Gbit'
+  dataCenters:
+  - dataCenterName: csuc_barcelona
+    defaultWorkingMode: "VTWM0"
+    workingModes:
+    - name: "VTWM0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM0"
+      performanceLevels:
+      - businessPerformance: !amount '0 Gbit/min'
+        power: !amount '0 W'
+      transitions:
+      - target: VTWM1
+        performanceCost: !amount '0.22 Gbit'
+      - target: VTWM2
+        performanceCost: !amount '0.31 Gbit'
+      - target: VTWM3
+        performanceCost: !amount '0.82 Gbit'
+      - target: VTWM4
+        performanceCost: !amount '1.21 Gbit'
+      resources: []
+    - name: "VTWM1"
+      value: 1
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM1"
+      performanceLevels:
+      - businessPerformance: !amount '0.03 Gbit/min'
+        power: !amount '82 W'
+      transitions:
+      - target: VTWM2
+        performanceCost: !amount '0.01 Gbit'
+      - target: VTWM3
+        performanceCost: !amount '0.11 Gbit'
+      - target: VTWM4
+        performanceCost: !amount '0.13 Gbit'
+      resources: 
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+    - name: "VTWM2"
+      value: 2
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM2"
+      performanceLevels:
+      - businessPerformance: !amount '0.04 Gbit/min'
+        power: !amount '114 W'
+      transitions:
+      - target: VTWM3
+        performanceCost: !amount '0.06 Gbit'
+      - target: VTWM4
+        performanceCost: !amount '0.10 Gbit'
+      resources:
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+      - !VM
+        name: vtvm2
+        ram: !amount '2 GB'
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+    - name: "VTWM3"
+      value: 3
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM3"
+      performanceLevels:
+      - businessPerformance: !amount '0.10 Gbit/min'
+        power: !amount '141 W'
+      transitions:
+      - target: VTWM4
+        performanceCost: !amount '0.04 Gbit'
+      resources:
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+      - !VM
+        name: vtvm2
+        ram: !amount '2 GB'
+      - !VM 
+        name: vtvm3
+        ram: !amount '2 GB'
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+    - name: "VTWM4"
+      value: 4
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM4"
+      performanceLevels:
+      - businessPerformance: !amount '0.14 Gbit/min'
+        power: !amount '164 W'
+      resources:
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+      - !VM 
+        name: vtvm2
+        ram: !amount '2 GB'
+      - !VM
+        name: vtvm3
+        ram: !amount '2 GB'
+      - !VM
+        name: vtvm4
+        ram: !amount '2 GB'
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+- name: WebCrawling
+  businessUnit: Webs
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '80000 Webs'
+    basePrice: !amount '48 EUR'
+    priceModifiers:
+    - threshold: !amount '80000 Webs'
+      modifier: !amount '0 EUR/Webs'
+    - threshold: !amount '0 Webs'
+      modifier: !amount '-0.0006 EUR/Webs'
+  dataCenters:
+  - dataCenterName: csuc_barcelona
+    defaultWorkingMode: "WCWM0"
+    workingModes:
+    - name: "WCWM0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitchWC.sh WCWM0"
+      performanceLevels:
+      - businessPerformance: !amount '0 Webs/min'
+        power: !amount '0 W'
+      transitions:
+      - target: WCWM2
+        performanceCost: !amount '317 Webs'
+      - target: WCWM5
+        performanceCost: !amount '864 Webs'
+      - target: WCWM8
+        performanceCost: !amount '1593 Webs'
+      resources: []
+    - name: "WCWM2"
+      value: 2
+      actuator:
+        systemCommand: "bin/WMSwitchWC.sh WCWM2"
+      performanceLevels:
+      - businessPerformance: !amount '33 Webs/min'
+        power: !amount '53 W'
+      transitions:
+      - target: WCWM5
+        performanceCost: !amount '165 Webs'
+      - target: WCWM8
+        performanceCost: !amount '969 Webs'
+      resources:
+      - !VM
+        name: wcvm0
+        ram: !amount '2 GB'
+      - !VM
+        name: wcvm1
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm2
+        ram: !amount '4 GB'
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+    - name: "WCWM5"
+      value: 5
+      actuator:
+        systemCommand: "bin/WMSwitchWC.sh WCWM5"
+      performanceLevels:
+      - businessPerformance: !amount '78 Webs/min'
+        power: !amount '54 W'
+      transitions:
+      - target: WCWM8
+        performanceCost: !amount '409 Webs'
+      resources:
+      - !VM
+        name: wcvm0
+        ram: !amount '2 GB'
+      - !VM
+        name: wcvm1
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm2
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm3
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm4
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm5
+        ram: !amount '4 GB'
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+    - name: "WCWM8"
+      value: 8
+      actuator:
+        systemCommand: "bin/WMSwitchWC.sh WCWM8"
+      performanceLevels:
+      - businessPerformance: !amount '121 Webs/min'
+        power: !amount '73 W'
+      resources:
+      - !VM
+        name: wcvm0
+        ram: !amount '2 GB'
+      - !VM
+        name: wcvm1
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm2
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm3
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm4
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm5
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm6
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm7
+        ram: !amount '4 GB'
+      - !VM
+        name: wcvm8
+        ram: !amount '4 GB'
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02

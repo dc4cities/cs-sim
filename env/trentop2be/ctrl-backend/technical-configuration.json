@@ -1,0 +1,42 @@
+{
+  "powerLoopInterval": 60,
+  "controlLoopInterval": 15,
+  "monitoringLoopInterval": 5,
+  "timeSlotWidth": 15,
+  "timeWindowWidth": 24,
+  "hdbUrl": "hackmeplz",
+  "hdbEnabled": true,
+  "companyCode": "DC4C",
+  "dataCenters": [
+    {
+      "name": "cn_trento",
+      "minPower": "2100",
+      "maxPower": "2100",
+      "pue": 1,
+      "erdsList": [
+        {
+          "name": "apss_grid",
+          "endpoint": "http://localhost:8080/dc4es-service"
+        }
+      ],
+      "eascGroups": [
+        {
+          "name": "group1",
+          "groupWeight": 1,
+          "eascWeights": [
+            {
+              "eascName": "EASC-Trento",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "eascList": [
+    {
+      "name": "EASC-Trento",
+      "endpoint": "http://localhost:9999"
+    }
+  ]
+}

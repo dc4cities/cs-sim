@@ -1,0 +1,42 @@
+{
+  "powerLoopInterval": 60,
+  "controlLoopInterval": 15,
+  "monitoringLoopInterval": 5,
+  "timeSlotWidth": 15,
+  "timeWindowWidth": 24,
+  "hdbUrl": "hackmeplz",
+  "hdbEnabled": true,
+  "companyCode": "DC4C",
+  "dataCenters": [
+    {
+      "name": "imi_barcelona",
+      "minPower": "1000",
+      "maxPower": "1000",
+      "pue": 1.0,
+      "erdsList": [
+        {
+          "name": "imi_grid",
+          "endpoint": "http://localhost:8080/dc4es-service"
+        }
+      ],
+      "eascGroups": [
+        {
+          "name": "group1",
+          "groupWeight": 1,
+          "eascWeights": [
+            {
+              "eascName": "EASC-IMI",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "eascList": [
+    {
+      "name": "EASC-IMI",
+      "endpoint": "http://localhost:9999"
+    }
+  ]
+}

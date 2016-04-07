@@ -1,0 +1,21 @@
+#!/usr/bin/Rscript
+require("ggplot2")
+require("plyr")
+args <- commandArgs(trailingOnly = TRUE)
+
+# Trim off excess margin space (bottom, left, top, right)
+par(mar=c(3, 3.6, 0.5, 0.5),ps=17,mgp=c(1.7,0.6,0))
+dta <- read.table(paste0(args[1],"/durations.csv"), sep=";", quote="\"", header=T)
+dta <- dta[dta$type=="first",]
+
+q = seq(99,100, by=0.1)/100;
+for (i in unique(dta$eascs)) {
+    cat("step",i,"\n");
+    print(quantile(dta[dta$eascs==i & dta$type=="first", "duration"], q));
+}
+
+dta$duration <- dta$duration/1000;
+p <- ggplot(dta, aes(x=duration)) + stat_ecdf(aes(colour=as.factor(eascs))) + scale_x_log10();
+p <- p + xlab("duration (s)") + ylab("ratio of problems")
+p
+ggsave(paste0(args[1],"/durations.pdf"), height=3, width=6);

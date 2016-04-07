@@ -1,0 +1,161 @@
+!Application
+name: EASC-IMI
+activities:
+- name: VideoTranscoding
+  businessUnit: Gbit
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '400 Gbit'
+    basePrice: !amount '400 EUR'
+    priceModifiers:
+    - threshold: !amount '400 Gbit'
+      modifier: !amount '0 EUR/Gbit'
+    - threshold: !amount '0 Gbit'
+      modifier: !amount '-2 EUR/Gbit'
+  dataCenters:
+  - dataCenterName: imi_barcelona
+    defaultWorkingMode: "VT0"
+    workingModes:
+    - name: "VT0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VT0"
+      performanceLevels:
+      - businessPerformance: !amount '0 Gbit/min'
+        power: !amount '0 W'
+      transitions:
+      - target: VT1
+        performanceCost: !amount '0.58 Gbit'
+      - target: VT2
+        performanceCost: !amount '1.23 Gbit'
+      - target: VT3
+        performanceCost: !amount '1.85 Gbit'
+      - target: VT4
+        performanceCost: !amount '2.73 Gbit'
+      - target: VT5
+        performanceCost: !amount '3.75 Gbit'
+      resources: []
+    - name: "VT1"
+      value: 1
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VT1"
+      performanceLevels:
+      - businessPerformance: !amount '0.14 Gbit/min'
+        power: !amount '220 W'
+      transitions:
+      - target: VT2
+        performanceCost: !amount '0.18 Gbit'
+      - target: VT3
+        performanceCost: !amount '0.45 Gbit'
+      - target: VT4
+        performanceCost: !amount '0.92 Gbit'
+      - target: VT5
+        performanceCost: !amount '2.90 Gbit'
+      resources: 
+      - !VM
+        name: vt1
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+    - name: "VT2"
+      value: 2
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VT2"
+      performanceLevels:
+      - businessPerformance: !amount '0.28 Gbit/min'
+        power: !amount '222 W'
+      transitions:
+      - target: VT3
+        performanceCost: !amount '0.16 Gbit'
+      - target: VT4
+        performanceCost: !amount '0.41 Gbit'
+      - target: VT5
+        performanceCost: !amount '2.14 Gbit'
+      resources:
+      - !VM
+        name: vt1
+      - !VM
+        name: vt2
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+    - name: "VT3"
+      value: 3
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VT3"
+      performanceLevels:
+      - businessPerformance: !amount '0.41 Gbit/min'
+        power: !amount '225 W'
+      transitions:
+      - target: VT4
+        performanceCost: !amount '0.14 Gbit'
+      - target: VT5
+        performanceCost: !amount '1.37 Gbit'
+      resources:
+      - !VM
+        name: vt1
+      - !VM
+        name: vt2
+      - !VM 
+        name: vt3
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+    - name: "VT4"
+      value: 4
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VT4"
+      performanceLevels:
+      - businessPerformance: !amount '0.52 Gbit/min'
+        power: !amount '229 W'
+      transitions:
+      - target: VT5
+        performanceCost: !amount '0.85 Gbit'
+      resources:
+      - !VM
+        name: vt1
+      - !VM 
+        name: vt2
+      - !VM
+        name: vt3
+      - !VM
+        name: vt4
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+    - name: "VT5"
+      value: 5
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VT5"
+      performanceLevels:
+      - businessPerformance: !amount '0.70 Gbit/min'
+        power: !amount '447 W'
+      resources: 
+      - !VM
+        name: vt1
+      - !VM
+        name: vt2
+      - !VM
+        name: vt3
+      - !VM
+        name: vt4
+      - !VM
+        name: vt5
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3

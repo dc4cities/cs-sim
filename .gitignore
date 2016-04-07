@@ -1,0 +1,13 @@
+.idea
+*.iml
+*.pdf
+*.log
+.Rhistory
+target
+test
+/.classpath
+/.project
+/.settings
+quickCheck
+html
+quickCheck*

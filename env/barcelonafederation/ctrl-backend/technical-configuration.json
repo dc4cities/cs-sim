@@ -1,0 +1,73 @@
+{
+  "powerLoopInterval": 60,
+  "controlLoopInterval": 15,
+  "monitoringLoopInterval": 5,
+  "timeSlotWidth": 15,
+  "timeWindowWidth": 24,
+  "hdbUrl": "http://hackmeplz",
+  "hdbEnabled": false,
+  "companyCode": "DC4C",
+  "dataCenters": [
+    {
+      "name": "csuc_barcelona",
+      "minPower": "0",
+      "maxPower": "688",
+      "pue": 1.0,
+      "erdsList": [
+        {
+          "name": "csuc_grid",
+          "endpoint": "http://localhost:8080/dc4es-service"
+        },
+        {
+          "name": "csuc_wind",
+          "endpoint": "http://localhost:8081/dc4es-service"
+        }
+      ],
+      "eascGroups": [
+        {
+          "name": "group1",
+          "groupWeight": 1,
+          "eascWeights": [
+            {
+              "eascName": "EASC-CSUC",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "imi_barcelona",
+      "minPower": "0",
+      "maxPower": "992",
+      "pue": 1.0,
+      "erdsList": [
+        {
+          "name": "imi_grid",
+          "endpoint": "http://10.0.200.23:8080/dc4es-service"
+        },
+        {
+          "name": "imi_pv",
+          "endpoint": "http://10.0.200.23:8081/dc4es-service"
+        }
+      ],
+      "eascGroups": [
+        {
+          "name": "group1",
+          "groupWeight": 1,
+          "eascWeights": [
+            {
+              "eascName": "EASC-CSUC",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    }],
+  "eascList": [
+    {
+      "name": "EASC-CSUC",
+      "endpoint": "http://localhost:9999"
+    }
+  ]
+}

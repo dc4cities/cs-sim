@@ -1,0 +1,171 @@
+!Application
+name: EASC-CSUC
+activities:
+- name: VideoTranscoding
+  businessUnit: Gbit
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '400 Gbit'
+    basePrice: !amount '400 EUR'
+    priceModifiers:
+    - threshold: !amount '400 Gbit'
+      modifier: !amount '0 EUR/Gbit'
+    - threshold: !amount '0 Gbit'
+      modifier: !amount '-2 EUR/Gbit'
+  dataCenters:
+  - dataCenterName: csuc_barcelona
+    defaultWorkingMode: "VTWM0"
+    workingModes:
+    - name: "VTWM0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM0"
+      performanceLevels:
+      - businessPerformance: !amount '0 Gbit/min'
+        power: !amount '0 W'
+      transitions:
+      - target: VTWM1
+        performanceCost: !amount '1.24 Gbit'
+      - target: VTWM2
+        performanceCost: !amount '3.14 Gbit'
+      - target: VTWM3
+        performanceCost: !amount '4.67 Gbit'
+      - target: VTWM4
+        performanceCost: !amount '5.46 Gbit'
+      - target: VTWM5
+        performanceCost: !amount '7.04 Gbit'
+      resources: []
+    - name: "VTWM1"
+      value: 1
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM1"
+      performanceLevels:
+      - businessPerformance: !amount '0.17 Gbit/min'
+        power: !amount '194 W'
+      transitions:
+      - target: VTWM2
+        performanceCost: !amount '0.28 Gbit'
+      - target: VTWM3
+        performanceCost: !amount '0.60 Gbit'
+      - target: VTWM4
+        performanceCost: !amount '0.88 Gbit'
+      - target: VTWM5
+        performanceCost: !amount '4.87 Gbit'
+      resources: 
+      - !VM
+        name: vtvm1
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster02
+      - !Server
+        name: cluster03
+    - name: "VTWM2"
+      value: 2
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM2"
+      performanceLevels:
+      - businessPerformance: !amount '0.41 Gbit/min'
+        power: !amount '225 W'
+      transitions:
+      - target: VTWM3
+        performanceCost: !amount '0.16 Gbit'
+      - target: VTWM4
+        performanceCost: !amount '0.33 Gbit'
+      - target: VTWM5
+        performanceCost: !amount '2.86 Gbit'
+      resources:
+      - !VM
+        name: vtvm1
+      - !VM
+        name: vtvm2
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster02
+      - !Server
+        name: cluster03
+    - name: "VTWM3"
+      value: 3
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM3"
+      performanceLevels:
+      - businessPerformance: !amount '0.57 Gbit/min'
+        power: !amount '247 W'
+      transitions:
+      - target: VTWM4
+        performanceCost: !amount '0.07 Gbit'
+      - target: VTWM5
+        performanceCost: !amount '1.56 Gbit'
+      resources:
+      - !VM
+        name: vtvm1
+      - !VM
+        name: vtvm2
+      - !VM 
+        name: vtvm3
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster02
+      - !Server
+        name: cluster03
+    - name: "VTWM4"
+      value: 4
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM4"
+      performanceLevels:
+      - businessPerformance: !amount '0.63 Gbit/min'
+        power: !amount '268 W'
+      transitions:
+      - target: VTWM5
+        performanceCost: !amount '1.07 Gbit'
+      resources:
+      - !VM
+        name: vtvm1
+      - !VM 
+        name: vtvm2
+      - !VM
+        name: vtvm3
+      - !VM
+        name: vtvm4
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster02
+      - !Server
+        name: cluster03
+    - name: "VTWM5"
+      value: 5
+      actuator:
+        systemCommand: "bin/WMSwitch.sh VTWM5"
+      performanceLevels:
+      - businessPerformance: !amount '0.79 Gbit/min'
+        power: !amount '468 W'
+      resources: 
+      - !VM
+        name: vtvm1
+      - !VM
+        name: vtvm2
+      - !VM
+        name: vtvm3
+      - !VM
+        name: vtvm4
+      - !VM
+        name: vtvm5
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster02
+      - !Server
+        name: cluster03

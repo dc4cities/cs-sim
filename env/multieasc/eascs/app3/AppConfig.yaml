@@ -1,0 +1,75 @@
+!Application
+name: App3
+activities:
+- name: Report caching
+  businessUnit: Report
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '830 Report'
+    basePrice: !amount '830 EUR'
+    priceModifiers:
+        - threshold: !amount '830 Report'
+          modifier: !amount '0 EUR/Report'
+        - threshold: !amount '0 Report'
+          modifier: !amount '-2 EUR/Report'
+  dataCenters:
+  - dataCenterName: cn_trento
+    defaultWorkingMode: "WM0"
+    workingModes:
+    - name: "WM0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM0"
+      performanceLevels:
+      - businessPerformance: !amount '0 Report/min'
+        power: !amount '25 W'
+      resources: []
+    - name: "WM14"
+      value: 14
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM14"
+      performanceLevels:
+      - businessPerformance: !amount '3.34 Report/min'
+        power: !amount '279.8 W'
+      resources:
+        - !CFApplication
+          name: vm-db
+          ram: 1
+          disk: 1
+          instances: 1
+- name: Report caching2
+  businessUnit: Report
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '830 Report'
+    basePrice: !amount '830 EUR'
+    priceModifiers:
+        - threshold: !amount '830 Report'
+          modifier: !amount '0 EUR/Report'
+        - threshold: !amount '0 Report'
+          modifier: !amount '-2 EUR/Report'
+  dataCenters:
+  - dataCenterName: cn_trento
+    defaultWorkingMode: "WM0"
+    workingModes:
+    - name: "WM0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM0"
+      performanceLevels:
+      - businessPerformance: !amount '0 Report/min'
+        power: !amount '25 W'
+      resources: []
+    - name: "WM14"
+      value: 14
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM14"
+      performanceLevels:
+      - businessPerformance: !amount '3.34 Report/min'
+        power: !amount '279.8 W'
+      resources:
+        - !CFApplication
+          name: vm-db
+          ram: 1
+          disk: 1
+          instances: 1

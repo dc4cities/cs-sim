@@ -1,0 +1,34 @@
+{
+  "id": "csucConfiguration",
+  "goals": [ {
+    "id": "renewableGoal",
+    "name": "Renewable Energy Goal",
+    "description": "Use 50% green energy",
+    "objectives": [ {
+      "id": "renewableObjective",
+      "name": "Renewable Energy Objective",
+      "description": "Use 50% green energy",
+      "type": "ENERGY_PROPERTY",
+      "implementationType": "MUST",
+      "enabled": true,
+      "dataCenterId": "csuc_barcelona",
+      "priority": 0,
+      "target": {
+        "metric": "renewablePercentage",
+        "operator": "gt",
+        "value": 50
+      },
+      "timeFrame": {
+        "recurrentExpression": "0 0 0 ? * *",
+		"duration" : "P1D"
+      },
+      "priceModifiers" : [ {
+        "threshold" : "50 %",
+        "modifier" : "0 EUR"
+      }, {
+        "threshold" : "0 %",
+        "modifier" : "-0.50 EUR/pp"
+      } ]
+    } ]
+  } ]
+}

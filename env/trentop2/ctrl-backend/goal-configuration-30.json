@@ -1,0 +1,41 @@
+{
+  "id": "trentoConfiguration",
+  "goals": [
+    {
+      "id": "renewableGoal",
+      "name": "Renewable Energy Goal",
+      "description": "Use 30% green energy",
+      "objectives": [
+        {
+          "id": "renewableObjective",
+          "name": "Renewable Energy Objective",
+          "description": "Use 30% green energy",
+          "type": "ENERGY_PROPERTY",
+          "implementationType": "MUST",
+          "enabled": true,
+          "dataCenterId": "cn_trento",
+          "priority": 0,
+          "target": {
+            "metric": "renewablePercentage",
+            "operator": "gt",
+            "value": 30
+          },
+          "timeFrame": {
+            "recurrentExpression": "0 0 0 ? * *",
+            "duration": "P1D"
+          },
+          "priceModifiers": [
+            {
+              "threshold": "30 %",
+              "modifier": "0 EUR/pp"
+            },
+            {
+              "threshold": "0 %",
+              "modifier": "-500 EUR/pp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

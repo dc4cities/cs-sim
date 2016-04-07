@@ -1,0 +1,294 @@
+!Application
+name: EASC-IMI
+activities:
+- name: VideoTranscoding
+  businessUnit: MB
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '84960 MB'
+    basePrice: !amount '30 EUR'
+    priceModifiers:
+    - threshold: !amount '84960 MB'
+      modifier: !amount '0 EUR/MB'
+    - threshold: !amount '0 MB'
+      modifier: !amount '-0.0007 EUR/MB'
+  dataCenters:
+  - dataCenterName: imi_barcelona
+    defaultWorkingMode: "VT0"
+    workingModes:
+    - name: "VT0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VT0"
+      performanceLevels:
+      - businessPerformance: !amount '0 MB/min'
+        power: !amount '0 W'
+      transitions:
+      - target: VT1
+        performanceCost: !amount '120 MB'
+      - target: VT2
+        performanceCost: !amount '260 MB'
+      - target: VT3
+        performanceCost: !amount '379 MB'
+      - target: VT4
+        performanceCost: !amount '630 MB'
+      resources: []
+    - name: "VT1"
+      value: 1
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VT1"
+      performanceLevels:
+      - businessPerformance: !amount '29 MB/min'
+        power: !amount '53 W'
+      transitions:
+      - target: VT2
+        performanceCost: !amount '38 MB'
+      - target: VT3
+        performanceCost: !amount '92 MB'
+      - target: VT4
+        performanceCost: !amount '220 MB'
+      resources: 
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+    - name: "VT2"
+      value: 2
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VT2"
+      performanceLevels:
+      - businessPerformance: !amount '59 MB/min'
+        power: !amount '78 W'
+      transitions:
+      - target: VT3
+        performanceCost: !amount '31 MB'
+      - target: VT4
+        performanceCost: !amount '104 MB'
+      resources:
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM
+        name: vtvm2
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+    - name: "VT3"
+      value: 3
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VT3"
+      performanceLevels:
+      - businessPerformance: !amount '84 MB/min'
+        power: !amount '110 W'
+      transitions:
+      - target: VT4
+        performanceCost: !amount '45 MB'
+      resources:
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM
+        name: vtvm2
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM 
+        name: vtvm3
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+    - name: "VT4"
+      value: 4
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VT4"
+      performanceLevels:
+      - businessPerformance: !amount '120 MB/min'
+        power: !amount '137 W'
+      resources:
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM 
+        name: vtvm2
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM
+        name: vtvm3
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM
+        name: vtvm4
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+- name: WebCrawling
+  businessUnit: Webs
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '100000 Webs'
+    basePrice: !amount '60 EUR'
+    priceModifiers:
+    - threshold: !amount '100000 Webs'
+      modifier: !amount '0 EUR/Webs'
+    - threshold: !amount '0 Webs'
+      modifier: !amount '-0.012 EUR/Webs'
+  dataCenters:
+  - dataCenterName: imi_barcelona
+    defaultWorkingMode: "WC0"
+    workingModes:
+    - name: "WC0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitchwc.sh WC0"
+      performanceLevels:
+      - businessPerformance: !amount '0 Webs/min'
+        power: !amount '0 W'
+      transitions:
+      - target: WC2
+        performanceCost: !amount '158 Webs'
+      - target: WC5
+        performanceCost: !amount '589 Webs'
+      - target: WC7
+        performanceCost: !amount '1096 Webs'
+      resources: []
+    - name: "WC2"
+      value: 2
+      actuator:
+        systemCommand: "bin/WMSwitchwc.sh WC2"
+      performanceLevels:
+      - businessPerformance: !amount '26 Webs/min'
+        power: !amount '23 W'
+      transitions:
+      - target: WC5
+        performanceCost: !amount '191 Webs'
+      - target: WC7
+        performanceCost: !amount '494 Webs'
+      resources:
+      - !VM
+        name: wcvm0
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm1
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm2
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+    - name: "WC5"
+      value: 5
+      actuator:
+        systemCommand: "bin/WMSwitchwc.sh WC5"
+      performanceLevels:
+      - businessPerformance: !amount '78 Webs/min'
+        power: !amount '23 W'
+      transitions:
+      - target: WC7
+        performanceCost: !amount '147 Webs'
+      resources:
+      - !VM
+        name: wcvm0
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm1
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm2
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm3
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm4
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm5
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3
+    - name: "WC7"
+      value: 7
+      actuator:
+        systemCommand: "bin/WMSwitchwc.sh WC7"
+      performanceLevels:
+      - businessPerformance: !amount '120 Webs/min'
+        power: !amount '23 W'
+      resources:
+      - !VM
+        name: wcvm0
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm1
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm2
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm3
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm4
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm5
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm6
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm7
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !Server
+        name: dc4c-on1
+      - !Server
+        name: dc4c-on2
+      - !Server
+        name: dc4c-on3

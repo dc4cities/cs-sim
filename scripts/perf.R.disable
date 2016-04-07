@@ -1,0 +1,21 @@
+#!/usr/local/bin/Rscript
+library("ggplot2")
+library(reshape2)
+library(plyr)
+
+args <- commandArgs(trailingOnly = TRUE)
+easc <- read.table(paste(args[1],"/eascs.csv",sep=""), sep=";", quote="\"", header=T)
+
+#keep only the template I am interesting interest in
+
+easc$usage <- NULL
+easc$easc <- NULL
+easc <- ddply(easc, c("slot","performance","template"), summarise, performance=sum(performance))
+
+#plotting the performance per template
+p <- ggplot(easc, aes(x=slot, y=performance))
+p + geom_line(stat="identity") + facet_wrap(~ template, scales="free_y") + theme_bw()
+ggsave(paste(args[1],"/perf.pdf",sep=""), width=10, height=3)
+
+# Generate also a png file, more web friendly to show report on jenkings.
+# ggsave(paste(args[1],"/perf.png",sep=""), width=10, height=3)

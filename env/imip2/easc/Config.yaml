@@ -1,0 +1,9 @@
+!Configuration
+energyService: default
+EASCName: EASC-IMI
+energisExecutePort: 8080
+energisExecuteURL: hackmeplz
+energisPort: 9999
+energisURL: hackmeplz
+monitoringSamplingTime: !amount '300 s'
+siteCode: imi_barcelona

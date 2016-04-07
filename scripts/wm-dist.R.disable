@@ -1,0 +1,23 @@
+#!/usr/local/bin/Rscript
+library("ggplot2")
+library(reshape2)
+library(plyr)
+
+args <- commandArgs(trailingOnly = TRUE)
+easc <- read.table(paste(args[1],"/eascs.csv",sep=""), sep=";", quote="\"", header=T)
+
+#keep only the template I am interesting interest in
+easc$usage <- NULL
+easc$performance <- NULL
+easc$watts <- NULL
+easc$easc <- NULL
+#working mode distribution
+easc <- ddply(easc, c("slot","mode","template"), summarise, count=length(mode))
+#plotting the distribution
+p <- ggplot(easc, aes(x=slot, y=count, fill=mode))
+p + geom_bar(stat="identity") + facet_wrap(~ template) + theme_bw()
+
+ggsave(paste(args[1],"/wm.pdf",sep=""), width=10, height=3)
+
+# Generate also a png file, more web friendly to show report on jenkings.
+ggsave(paste(args[1],"/wm.png",sep=""), width=10, height=3)

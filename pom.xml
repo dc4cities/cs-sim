@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2012 The DC4Cities author.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>eu.dc4cities</groupId>
+    <artifactId>benchcs</artifactId>
+    <version>1.0</version>
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>dc4cities-releases</id>
+            <name>Corporate Repository</name>
+            <url>file:/home/dc4cities/public_html/maven/releases</url>
+            <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>dc4cities-snapshots</id>
+            <name>Corporate Repository</name>
+            <url>file:/home/dc4cities/public_html/maven/snapshots</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>logs</directory>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>test</directory>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <descriptors>
+                        <descriptor>assembly.xml</descriptor>
+                    </descriptors>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>eu.dc4cities.benchcs.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <centralSystem.version>2.0.0-SNAPSHOT</centralSystem.version>
+        <easc.version>2.0.0-SNAPSHOT</easc.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>dc4es-core</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>dc4es-service</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>process-controller</artifactId>
+            <version>${centralSystem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>power-splitter</artifactId>
+            <version>${centralSystem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>easc-handler</artifactId>
+            <version>${centralSystem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>erds-handler</artifactId>
+            <version>${centralSystem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>option-consolidator</artifactId>
+            <version>${centralSystem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>power-planner</artifactId>
+            <version>${centralSystem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>escalation-manager</artifactId>
+            <version>${centralSystem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>configuration-controller</artifactId>
+            <version>${centralSystem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>EASC-Core</artifactId>
+            <version>${easc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>EASC-CloudFoundryConnector</artifactId>
+            <version>${easc.version}</version>
+            <exclusions>
+            	<exclusion>
+            		<groupId>eu.dc4cities</groupId>
+            		<artifactId>EASC-Core</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>eu.dc4cities</groupId>
+            		<artifactId>EASC-OpenStackConnector</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>eu.dc4cities</groupId>
+            <artifactId>EASC-OpenStackConnector</artifactId>
+            <version>${easc.version}</version>
+            <exclusions>
+            	<exclusion>
+            		<groupId>eu.dc4cities</groupId>
+            		<artifactId>EASC-Core</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>dc4cities-snapshots</id>
+            <url>http://dc4cities.inria.fr/~dc4cities/maven/snapshots</url>
+        </repository>
+        <repository>
+            <id>dc4cities-releases</id>
+            <url>http://dc4cities.inria.fr/~dc4cities/maven/releases</url>
+        </repository>
+    </repositories>
+</project>

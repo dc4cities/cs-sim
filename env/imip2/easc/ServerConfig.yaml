@@ -1,0 +1,17 @@
+!ServerConfig
+servers:
+ - name: dc4c-on1
+   pidle: !amount '416 W'
+   ram:   !amount '28.0 GB'
+   disk:  !amount '100 GB'
+   nbCpus: 80
+ - name: dc4c-on2
+   pidle: !amount '416 W'
+   ram:   !amount '28.0 GB'
+   disk:  !amount '100 GB'
+   nbCpus: 80
+ - name: dc4c-on3
+   pidle: !amount '243 W'
+   ram:   !amount '28.0 GB'
+   disk:  !amount '100 GB'
+   nbCpus: 80

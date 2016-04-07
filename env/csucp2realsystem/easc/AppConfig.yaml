@@ -1,0 +1,308 @@
+!Application
+name: EASC-CSUC
+activities:
+- name: VideoTranscoding
+  businessUnit: MB
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '93600 MB'
+    basePrice: !amount '30 EUR'
+    priceModifiers:
+    - threshold: !amount '93600 MB'
+      modifier: !amount '0 EUR/MB'
+    - threshold: !amount '0 MB'
+      modifier: !amount '-0.0007 EUR/MB'
+  dataCenters:
+  - dataCenterName: csuc_barcelona
+    defaultWorkingMode: "VTWM0"
+    workingModes:
+    - name: "VTWM0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VTWM0"
+      performanceLevels:
+      - businessPerformance: !amount '0 MB/min'
+        power: !amount '0 W'
+      transitions:
+      - target: VTWM1
+        performanceCost: !amount '216 MB'
+      - target: VTWM2
+        performanceCost: !amount '498 MB'
+      - target: VTWM3
+        performanceCost: !amount '853 MB'
+      - target: VTWM4
+        performanceCost: !amount '1153 MB'
+      resources: []
+    - name: "VTWM1"
+      value: 1
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VTWM1"
+      performanceLevels:
+      - businessPerformance: !amount '29 MB/min'
+        power: !amount '70 W'
+      transitions:
+      - target: VTWM2
+        performanceCost: !amount '41 MB'
+      - target: VTWM3
+        performanceCost: !amount '110 MB'
+      - target: VTWM4
+        performanceCost: !amount '207 MB'
+      resources: 
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+    - name: "VTWM2"
+      value: 2
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VTWM2"
+      performanceLevels:
+      - businessPerformance: !amount '64 MB/min'
+        power: !amount '115 W'
+      transitions:
+      - target: VTWM3
+        performanceCost: !amount '38 MB'
+      - target: VTWM4
+        performanceCost: !amount '110 MB'
+      resources:
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM
+        name: vtvm2
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+    - name: "VTWM3"
+      value: 3
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VTWM3"
+      performanceLevels:
+      - businessPerformance: !amount '102 MB/min'
+        power: !amount '162 W'
+      transitions:
+      - target: VTWM4
+        performanceCost: !amount '38 MB'
+      resources:
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM
+        name: vtvm2
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM 
+        name: vtvm3
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+    - name: "VTWM4"
+      value: 4
+      actuator:
+        systemCommand: "bin/WMSwitchvt.sh VTWM4"
+      performanceLevels:
+      - businessPerformance: !amount '137 MB/min'
+        power: !amount '195 W'
+      resources:
+      - !VM
+        name: vtvm1
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM 
+        name: vtvm2
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM
+        name: vtvm3
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !VM
+        name: vtvm4
+        ram: !amount '2 GB'
+        vCpus: 20
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+- name: WebCrawling
+  businessUnit: Webs
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '100000 Webs'
+    basePrice: !amount '60 EUR'
+    priceModifiers:
+    - threshold: !amount '100000 Webs'
+      modifier: !amount '0 EUR/Webs'
+    - threshold: !amount '0 Webs'
+      modifier: !amount '-0.012 EUR/Webs'
+  dataCenters:
+  - dataCenterName: csuc_barcelona
+    defaultWorkingMode: "WCWM0"
+    workingModes:
+    - name: "WCWM0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitchwc.sh WCWM0"
+      performanceLevels:
+      - businessPerformance: !amount '0 Webs/min'
+        power: !amount '0 W'
+      transitions:
+      - target: WCWM2
+        performanceCost: !amount '257 Webs'
+      - target: WCWM5
+        performanceCost: !amount '709 Webs'
+      - target: WCWM7
+        performanceCost: !amount '1710 Webs'
+      resources: []
+    - name: "WCWM2"
+      value: 2
+      actuator:
+        systemCommand: "bin/WMSwitchwc.sh WCWM2"
+      performanceLevels:
+      - businessPerformance: !amount '30 Webs/min'
+        power: !amount '43 W'
+      transitions:
+      - target: WCWM5
+        performanceCost: !amount '125 Webs'
+      - target: WCWM7
+        performanceCost: !amount '551 Webs'
+      resources:
+      - !VM
+        name: wcvm0
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm1
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm2
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+    - name: "WCWM5"
+      value: 5
+      actuator:
+        systemCommand: "bin/WMSwitchwc.sh WCWM5"
+      performanceLevels:
+      - businessPerformance: !amount '64 Webs/min'
+        power: !amount '43 W'
+      transitions:
+      - target: WCWM7
+        performanceCost: !amount '249 Webs'
+      resources:
+      - !VM
+        name: wcvm0
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm1
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm2
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm3
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm4
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm5
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02
+    - name: "WCWM7"
+      value: 7
+      actuator:
+        systemCommand: "bin/WMSwitchwc.sh WCWM7"
+      performanceLevels:
+      - businessPerformance: !amount '135 Webs/min'
+        power: !amount '45 W'
+      resources:
+      - !VM
+        name: wcvm0
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm1
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm2
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm3
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm4
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm5
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm6
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !VM
+        name: wcvm7
+        ram: !amount '1 GB'
+        vCpus: 1
+      - !Server
+        name: cluster01
+      - !Server
+        name: cluster00
+      - !Server
+        name: cluster03
+      - !Server
+        name: cluster02

@@ -1,0 +1,22 @@
+!ServerConfig
+servers:
+ - name: Node-8
+   disk:  !amount '100 GB'
+   pidle: !amount '146.29 W'
+   ram:   !amount '1.5 GB'
+ - name: Node-12
+   disk:  !amount '100 GB'
+   pidle: !amount '607.33 W'
+   ram:   !amount '24 GB'
+ - name: Node-11
+   disk:  !amount '100 GB'
+   pidle: !amount '436.67 W'
+   ram:   !amount '12 GB'
+ - name: Node-13
+   disk:  !amount '100 GB'
+   pidle: !amount '465.44 W'
+   ram:   !amount '12 GB'
+ - name: Node-9
+   disk:  !amount '100 GB'
+   pidle: !amount '465.44 W'
+   ram:   !amount '6 GB'

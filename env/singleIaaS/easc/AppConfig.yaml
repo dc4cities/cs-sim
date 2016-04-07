@@ -1,0 +1,114 @@
+!Application
+name: "EASC-IaaS"
+activities:
+- name: "VM1"
+  businessUnit: "pCPU_usage"
+  relocability: "no"
+  serviceLevelObjectives:
+    - instantBusinessObjective: !amount '100 pCPU_usage'
+      timeFrom: 00:00:00
+      timeTo: 24:00:00
+      basePrice: !amount '2 EUR'
+      priceModifiers:
+        - threshold: !amount '50 pCPU_usage'
+          modifier: !amount '-0.0002 EUR'
+  dataCenters:
+  - dataCenterName: "AmazonEC2"
+    defaultWorkingMode: "WM0"
+    workingModes:
+    - name: "WM0"
+      actuator:
+        systemCommand: "bin/localWMSwitch.sh WM0"
+      performanceLevels:
+        - businessPerformance: !amount '50 pCPU_usage'
+          power: !amount '100 W'
+    - name: "WM1"
+      actuator:
+        systemCommand: "bin/localWMSwitch.sh WM1"
+      performanceLevels:
+        - businessPerformance: !amount '100 pCPU_usage'
+          power: !amount '150 W'
+
+- name: "VM2"
+  businessUnit: "pCPU_usage"
+  relocability: "no"
+  serviceLevelObjectives:
+    - instantBusinessObjective: !amount '100 pCPU_usage'
+      timeFrom: 00:00:00
+      timeTo: 24:00:00
+      basePrice: !amount '2 EUR'
+      priceModifiers:
+        - threshold: !amount '50 pCPU_usage'
+          modifier: !amount '-0.0002 EUR'
+  dataCenters:
+  - dataCenterName: "AmazonEC2"
+    defaultWorkingMode: "WM0"
+    workingModes:
+    - name: "WM0"
+      actuator:
+        systemCommand: "bin/localWMSwitch.sh WM0"
+      performanceLevels:
+        - businessPerformance: !amount '50 pCPU_usage'
+          power: !amount '100 W'
+    - name: "WM1"
+      actuator:
+        systemCommand: "bin/localWMSwitch.sh WM1"
+      performanceLevels:
+        - businessPerformance: !amount '100 pCPU_usage'
+          power: !amount '150 W'
+
+- name: "VM3"
+  businessUnit: "pCPU_usage"
+  relocability: "no"
+  serviceLevelObjectives:
+    - instantBusinessObjective: !amount '100 pCPU_usage'
+      timeFrom: 00:00:00
+      timeTo: 24:00:00
+      basePrice: !amount '2 EUR'
+      priceModifiers:
+        - threshold: !amount '50 pCPU_usage'
+          modifier: !amount '-0.0002 EUR'
+  dataCenters:
+  - dataCenterName: "AmazonEC2"
+    defaultWorkingMode: "WM0"
+    workingModes:
+    - name: "WM0"
+      actuator:
+        systemCommand: "bin/localWMSwitch.sh WM0"
+      performanceLevels:
+        - businessPerformance: !amount '50 pCPU_usage'
+          power: !amount '100 W'
+    - name: "WM1"
+      actuator:
+        systemCommand: "bin/localWMSwitch.sh WM1"
+      performanceLevels:
+        - businessPerformance: !amount '100 pCPU_usage'
+          power: !amount '150 W'
+
+- name: "VM4"
+  businessUnit: "pCPU_usage"
+  relocability: "no"
+  serviceLevelObjectives:
+    - instantBusinessObjective: !amount '100 pCPU_usage'
+      timeFrom: 00:00:00
+      timeTo: 24:00:00
+      basePrice: !amount '2 EUR'
+      priceModifiers:
+        - threshold: !amount '50 pCPU_usage'
+          modifier: !amount '-0.0002 EUR'
+  dataCenters:
+  - dataCenterName: "AmazonEC2"
+    defaultWorkingMode: "WM0"
+    workingModes:
+    - name: "WM0"
+      actuator:
+        systemCommand: "bin/localWMSwitch.sh WM0"
+      performanceLevels:
+        - businessPerformance: !amount '50 pCPU_usage'
+          power: !amount '100 W'
+    - name: "WM1"
+      actuator:
+        systemCommand: "bin/localWMSwitch.sh WM1"
+      performanceLevels:
+        - businessPerformance: !amount '100 pCPU_usage'
+          power: !amount '150 W'

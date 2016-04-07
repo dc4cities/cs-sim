@@ -1,0 +1,349 @@
+!Application
+name: easc_hp
+activities:
+  - name: website
+    businessUnit: Req/s
+    relocability: no
+    serviceLevelObjectives:
+      - timeFrom: 00:00:00
+        timeTo: 01:00:00
+        instantBusinessObjective: !amount '1780 Req/s'
+        basePrice: !amount '17.80 EUR'
+        priceModifiers:
+          - threshold: !amount '1780 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 01:00:00
+        timeTo: 02:00:00
+        instantBusinessObjective: !amount '1630 Req/s'
+        basePrice: !amount '16.30 EUR'
+        priceModifiers:
+          - threshold: !amount '1630 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 02:00:00
+        timeTo: 03:00:00
+        instantBusinessObjective: !amount '1360 Req/s'
+        basePrice: !amount '13.60 EUR'
+        priceModifiers:
+          - threshold: !amount '1360 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 03:00:00
+        timeTo: 04:00:00
+        instantBusinessObjective: !amount '1030 Req/s'
+        basePrice: !amount '10.30 EUR'
+        priceModifiers:
+          - threshold: !amount '1030 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 04:00:00
+        timeTo: 05:00:00
+        instantBusinessObjective: !amount '898 Req/s'
+        basePrice: !amount '8.98 EUR'
+        priceModifiers:
+          - threshold: !amount '898 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 05:00:00
+        timeTo: 06:00:00
+        instantBusinessObjective: !amount '835 Req/s'
+        basePrice: !amount '8.35 EUR'
+        priceModifiers:
+          - threshold: !amount '835 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 06:00:00
+        timeTo: 07:00:00
+        instantBusinessObjective: !amount '680 Req/s'
+        basePrice: !amount '6.80 EUR'
+        priceModifiers:
+          - threshold: !amount '680 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 07:00:00
+        timeTo: 08:00:00
+        instantBusinessObjective: !amount '864 Req/s'
+        basePrice: !amount '8.64 EUR'
+        priceModifiers:
+          - threshold: !amount '864 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 08:00:00
+        timeTo: 09:00:00
+        instantBusinessObjective: !amount '969 Req/s'
+        basePrice: !amount '9.69 EUR'
+        priceModifiers:
+          - threshold: !amount '969 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 09:00:00
+        timeTo: 10:00:00
+        instantBusinessObjective: !amount '1310 Req/s'
+        basePrice: !amount '13.10 EUR'
+        priceModifiers:
+          - threshold: !amount '1310 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 10:00:00
+        timeTo: 11:00:00
+        instantBusinessObjective: !amount '1670 Req/s'
+        basePrice: !amount '16.70 EUR'
+        priceModifiers:
+          - threshold: !amount '1670 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 11:00:00
+        timeTo: 12:00:00
+        instantBusinessObjective: !amount '1860 Req/s'
+        basePrice: !amount '18.60 EUR'
+        priceModifiers:
+          - threshold: !amount '1860 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 12:00:00
+        timeTo: 13:00:00
+        instantBusinessObjective: !amount '2000 Req/s'
+        basePrice: !amount '20.00 EUR'
+        priceModifiers:
+          - threshold: !amount '2000 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 13:00:00
+        timeTo: 14:00:00
+        instantBusinessObjective: !amount '2330 Req/s'
+        basePrice: !amount '23.30 EUR'
+        priceModifiers:
+          - threshold: !amount '2330 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 14:00:00
+        timeTo: 15:00:00
+        instantBusinessObjective: !amount '2470 Req/s'
+        basePrice: !amount '24.70 EUR'
+        priceModifiers:
+          - threshold: !amount '2470 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 15:00:00
+        timeTo: 16:00:00
+        instantBusinessObjective: !amount '3270 Req/s'
+        basePrice: !amount '32.70 EUR'
+        priceModifiers:
+          - threshold: !amount '3270 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 16:00:00
+        timeTo: 17:00:00
+        instantBusinessObjective: !amount '3000 Req/s'
+        basePrice: !amount '30.00 EUR'
+        priceModifiers:
+          - threshold: !amount '3000 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 17:00:00
+        timeTo: 18:00:00
+        instantBusinessObjective: !amount '3440 Req/s'
+        basePrice: !amount '34.40 EUR'
+        priceModifiers:
+          - threshold: !amount '3440 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 18:00:00
+        timeTo: 19:00:00
+        instantBusinessObjective: !amount '3150 Req/s'
+        basePrice: !amount '31.50 EUR'
+        priceModifiers:
+          - threshold: !amount '3150 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 19:00:00
+        timeTo: 20:00:00
+        instantBusinessObjective: !amount '2860 Req/s'
+        basePrice: !amount '28.60 EUR'
+        priceModifiers:
+          - threshold: !amount '2860 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 20:00:00
+        timeTo: 21:00:00
+        instantBusinessObjective: !amount '2260 Req/s'
+        basePrice: !amount '22.60 EUR'
+        priceModifiers:
+          - threshold: !amount '2260 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 21:00:00
+        timeTo: 22:00:00
+        instantBusinessObjective: !amount '2000 Req/s'
+        basePrice: !amount '20.00 EUR'
+        priceModifiers:
+          - threshold: !amount '2000 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 22:00:00
+        timeTo: 23:00:00
+        instantBusinessObjective: !amount '1860 Req/s'
+        basePrice: !amount '18.60 EUR'
+        priceModifiers:
+          - threshold: !amount '1860 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+      - timeFrom: 23:00:00
+        timeTo: 24:00:00
+        instantBusinessObjective: !amount '1650 Req/s'
+        basePrice: !amount '16.50 EUR'
+        priceModifiers:
+          - threshold: !amount '1650 Req/s'
+            modifier: !amount '0 EUR/(Req/s)'
+          - threshold: !amount '0 Req/s'
+            modifier: !amount '-0.02 EUR/(Req/s)'
+    dataCenters:
+      - dataCenterName: hp_milan
+        defaultWorkingMode: WM1SM
+        workingModes:
+          - name: WM1SM
+            value: 1
+            actuator:
+              systemCommand: bin/applyworkingmode.sh WM1SM
+            performanceLevels:
+              - businessPerformance: !amount '1096 Req/s'
+                power: !amount '351 W'
+          - name: WM1SF
+            value: 2
+            actuator:
+              systemCommand: bin/applyworkingmode.sh WM1SF
+            performanceLevels:
+              - businessPerformance: !amount '1372 Req/s'
+                power: !amount '375 W'
+          - name: WM1SF1SM
+            value: 3
+            actuator:
+              systemCommand: bin/applyworkingmode.sh WM1SF1SM
+            performanceLevels:
+              - businessPerformance: !amount '2451 Req/s'
+                power: !amount '412 W'
+          - name: WM2SF
+            value: 4
+            actuator:
+              systemCommand: bin/applyworkingmode.sh WM2SF
+            performanceLevels:
+              - businessPerformance: !amount '2743 Req/s'
+                power: !amount '432 W'
+          - name: WM2SF1SM
+            value: 5
+            actuator:
+              systemCommand: bin/applyworkingmode.sh WM2SF1SM
+            performanceLevels:
+              - businessPerformance: !amount '3176 Req/s'
+                power: !amount '465 W'
+          - name: WM3SF
+            value: 6
+            actuator:
+              systemCommand: bin/applyworkingmode.sh WM3SF
+            performanceLevels:
+              - businessPerformance: !amount '3455 Req/s'
+                power: !amount '518 W'
+  - name: indexing_global
+    businessUnit: kPage
+    relocability: no
+    serviceLevelObjectives:
+      - timeFrom: 00:00:00
+        timeTo: 24:00:00
+        cumulativeBusinessObjective: !amount '3000 kPage'
+        basePrice: !amount '300 EUR'
+        priceModifiers:
+          - threshold: !amount '3000 kPage'
+            modifier: !amount '0 EUR/kPage'
+          - threshold: !amount '1500 kPage'
+            modifier: !amount '-0.2 EUR/kPage'
+          - threshold: !amount '0 kPage'
+            modifier: !amount '-300 EUR'
+    dataCenters:
+      - dataCenterName: hp_milan
+        defaultWorkingMode: WMSG0
+        workingModes:
+          - name: WMSG0
+            value: 0
+            actuator:
+              systemCommand: bin/setWorkload.sh WMDown_idol1
+            performanceLevels:
+              - businessPerformance: !amount '0 kPage/h'
+                power: !amount '6 W'
+          - name: WMSG1
+            value: 1
+            actuator:
+              systemCommand: bin/setWorkload.sh WM1_idol1
+            performanceLevels:
+              - businessPerformance: !amount '280 kPage/h'
+                power: !amount '27 W'
+          - name: WMSG2
+            value: 2
+            actuator:
+              systemCommand: bin/setWorkload.sh WM2_idol1
+            performanceLevels:
+              - businessPerformance: !amount '565 kPage/h'
+                power: !amount '33 W'
+  - name: indexing_elearning
+    businessUnit: kPage
+    relocability: no
+    serviceLevelObjectives:
+      - timeFrom: 00:00:00
+        timeTo: 24:00:00
+        cumulativeBusinessObjective: !amount '200 kPage'
+        basePrice: !amount '100 EUR'
+        priceModifiers:
+          - threshold: !amount '200 kPage'
+            modifier: !amount '0 EUR/kPage'
+          - threshold: !amount '100 kPage'
+            modifier: !amount '-1 EUR/kPage'
+          - threshold: !amount '0 kPage'
+            modifier: !amount '-100 EUR'
+    dataCenters:
+      - dataCenterName: hp_milan
+        defaultWorkingMode: WMSE0
+        workingModes:
+          - name: WMSE0
+            value: 0
+            actuator:
+              systemCommand: bin/setWorkload.sh WMDown_idol2
+            performanceLevels:
+              - businessPerformance: !amount '0 kPage/h'
+                power: !amount '6 W'
+          - name: WMSE1
+            value: 1
+            actuator:
+              systemCommand: bin/setWorkload.sh WM1_idol2
+            performanceLevels:
+              - businessPerformance: !amount '35 kPage/h'
+                power: !amount '27 W'
+          - name: WMSE2
+            value: 2
+            actuator:
+              systemCommand: bin/setWorkload.sh WM2_idol2
+            performanceLevels:
+              - businessPerformance: !amount '60 kPage/h'
+                power: !amount '33 W'

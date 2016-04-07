@@ -1,0 +1,217 @@
+!Application
+name: EASC-Trento
+activities:
+ - name: fend
+   businessUnit: Req
+   relocability: no
+   serviceLevelObjectives:
+      - timeFrom: 00:00:00
+        timeTo: 08:00:00
+        instantBusinessObjective: !amount '0 Req/min'
+        basePrice: !amount '0 EUR'
+        priceModifiers:
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '0 EUR/Req'
+      - timeFrom: 08:00:00
+        timeTo: 09:00:00
+        instantBusinessObjective: !amount '7.5 Req/min'
+        basePrice: !amount '7.5 EUR'
+        priceModifiers:
+          - threshold: !amount '7.5 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 09:00:00
+        timeTo: 10:00:00
+        instantBusinessObjective: !amount '10 Req/min'
+        basePrice: !amount '10 EUR'
+        priceModifiers:
+          - threshold: !amount '10 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 10:00:00
+        timeTo: 11:00:00
+        instantBusinessObjective: !amount '41.666667 Req/min'
+        basePrice: !amount '41.67 EUR'
+        priceModifiers:
+          - threshold: !amount '41.666667 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 11:00:00
+        timeTo: 12:00:00
+        instantBusinessObjective: !amount '21.666667 Req/min'
+        basePrice: !amount '21.67 EUR'
+        priceModifiers:
+          - threshold: !amount '21.666667 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 12:00:00
+        timeTo: 13:00:00
+        instantBusinessObjective: !amount '19.1666667 Req/min'
+        basePrice: !amount '19.17 EUR'
+        priceModifiers:
+          - threshold: !amount '19.1666667 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 13:00:00
+        timeTo: 14:00:00
+        instantBusinessObjective: !amount '16.666667 Req/min'
+        basePrice: !amount '16.67 EUR'
+        priceModifiers:
+          - threshold: !amount '16.666667 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 14:00:00
+        timeTo: 15:00:00
+        instantBusinessObjective: !amount '91.66666667 Req/min'
+        basePrice: !amount '91.67 EUR'
+        priceModifiers:
+          - threshold: !amount '91.66666667 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 15:00:00
+        timeTo: 16:00:00
+        instantBusinessObjective: !amount '91.66666667 Req/min'
+        basePrice: !amount '91.67 EUR'
+        priceModifiers:
+          - threshold: !amount '91.66666667 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 16:00:00
+        timeTo: 17:00:00
+        instantBusinessObjective: !amount '50 Req/min'
+        basePrice: !amount '50 EUR'
+        priceModifiers:
+          - threshold: !amount '50 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 17:00:00
+        timeTo: 18:00:00
+        instantBusinessObjective: !amount '33.333334 Req/min'
+        basePrice: !amount '33.34 EUR'
+        priceModifiers:
+          - threshold: !amount '33.333334 Req/min'
+            modifier: !amount '0 EUR/Req'
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '-0.02 EUR/Req'
+      - timeFrom: 18:00:00
+        timeTo: 24:00:00
+        instantBusinessObjective: !amount '0 Req/min'
+        basePrice: !amount '0 EUR'
+        priceModifiers:
+          - threshold: !amount '0 Req/min'
+            modifier: !amount '0 EUR/Req'
+   dataCenters:
+    - dataCenterName: cn_trento
+      defaultWorkingMode: WM0
+      workingModes:
+      - name: WM0
+        value: 0
+        actuator:
+         systemCommand: bin/localWMSwitch.sh WM0
+        performanceLevels:
+         - businessPerformance: !amount '15 Req/min'
+           power: !amount '167.27 W'
+        transitions:
+        - target: WMMIN
+          performanceCost: !amount '240 Req'
+        - target: WMMED
+          performanceCost: !amount '360 Req'
+        - target: WMMAX
+          performanceCost: !amount '720 Req'
+      - name: WMMIN
+        value: 1
+        actuator:
+         systemCommand: bin/localWMSwitch.sh WMMIN
+        performanceLevels:
+        - businessPerformance: !amount '30 Req/min'
+          power: !amount '735.90 W'
+        transitions:
+        - target: WMMED
+          performanceCost: !amount '45 Req'
+        - target: WMMAX
+          performanceCost: !amount '90 Req'
+      - name: WMMED
+        value: 2
+        actuator: 
+         systemCommand: bin/localWMSwitch.sh WMMED
+        performanceLevels:
+        - businessPerformance: !amount '45 Req/min'
+          power: !amount '766.21 W'
+        transitions:
+        - target: WMMAX
+          performanceCost: !amount '90 Req'
+      - name: WMMAX
+        value: 3
+        actuator:
+         systemCommand: bin/localWMSwitch.sh WMMAX
+        performanceLevels:
+        - businessPerformance: !amount '90 Req/min'
+          power: !amount '810.54 W'
+ - name: bend
+   businessUnit: Exam
+   relocability: no
+   businessBucketStream: yes
+   serviceLevelObjectives:
+    - cumulativeBusinessObjective: !amount '3000 Exam'
+      basePrice: !amount '600 EUR'
+      priceModifiers:
+       - threshold: !amount '3000 Exam'
+         modifier: !amount '0 EUR/Exam'
+       - threshold: !amount '0 Exam'
+         modifier: !amount '-10 EUR/Exam'
+   dataCenters:
+    - dataCenterName: cn_trento
+      defaultWorkingMode: WM0
+      workingModes:
+      - name: WM0
+        value: 0
+        actuator:
+         systemCommand: bin/localWMSwitch.sh WM0
+        performanceLevels:
+         - businessPerformance: !amount '0 Exam/min'
+           power: !amount '0 W'
+        transitions:
+        - target: WMMIN
+          performanceCost: !amount '32 Exam'
+        - target: WMMED
+          performanceCost: !amount '120 Exam'
+        - target: WMMAX
+          performanceCost: !amount '240 Exam'
+      - name: WMMIN
+        value: 1
+        actuator:
+         systemCommand: bin/localWMSwitch.sh WMMIN
+        performanceLevels:
+        - businessPerformance: !amount '4 Exam/min'
+          power: !amount '695.89 W'
+        transitions:
+        - target: WMMED
+          performanceCost: !amount '60 Exam'
+        - target: WMMAX
+          performanceCost: !amount '120 Exam'
+      - name: WMMED
+        value: 2
+        actuator: 
+         systemCommand: bin/localWMSwitch.sh WMMED
+        performanceLevels:
+        - businessPerformance: !amount '7.5 Exam/min'
+          power: !amount '1001.65 W'
+        transitions:
+        - target: WMMAX
+          performanceCost: !amount '15 Exam'
+      - name: WMMAX
+        value: 3
+        actuator:
+         systemCommand: bin/localWMSwitch.sh WMMAX
+        performanceLevels:
+        - businessPerformance: !amount '15 Exam/min'
+          power: !amount '2013 W'

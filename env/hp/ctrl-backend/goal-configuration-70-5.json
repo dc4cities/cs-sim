@@ -1,0 +1,41 @@
+{
+  "id": "hpConfiguration",
+  "goals": [
+    {
+      "id": "renewableGoal",
+      "name": "Renewable Energy Goal",
+      "description": "Use 70% green energy",
+      "objectives": [
+        {
+          "id": "renewableObjective",
+          "name": "Renewable Energy Objective",
+          "description": "Use 70% green energy",
+          "type": "ENERGY_PROPERTY",
+          "implementationType": "MUST",
+          "enabled": true,
+          "dataCenterId": "hp_milan",
+          "priority": 0,
+          "target": {
+            "metric": "renewablePercentage",
+            "operator": "ge",
+            "value": 70
+          },
+          "timeFrame": {
+            "recurrentExpression": "0 0 0 ? * *",
+            "duration": "P1D"
+          },
+          "priceModifiers": [
+            {
+              "threshold": "70 %",
+              "modifier": "0 EUR"
+            },
+            {
+              "threshold": "0 %",
+              "modifier": "-5 EUR/pp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

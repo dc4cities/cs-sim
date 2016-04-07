@@ -1,0 +1,18 @@
+!ServerConfig
+servers:
+ - name: cluster01
+   pidle: !amount '140 W'
+   ram:   !amount '31.0 GB'
+   disk:  !amount '100 GB'
+ - name: cluster00
+   pidle: !amount '140 W'
+   ram:   !amount '43.0 GB'
+   disk:  !amount '100 GB'
+ - name: cluster03
+   pidle: !amount '140 W'
+   ram:   !amount '43.0 GB'
+   disk:  !amount '100 GB'
+ - name: cluster02
+   pidle: !amount '130 W'
+   ram:   !amount '19.0 GB'
+   disk:  !amount '100 GB'

@@ -1,0 +1,34 @@
+{
+  "id": "hpConfiguration",
+  "goals": [ {
+	"id": "renewableGoal",
+	"name": "Renewable Energy Goal",
+	"description": "Use 80% green energy",
+	"objectives": [ {
+	  "id": "renewableObjective",
+	  "name": "Renewable Energy Objective",
+	  "description": "Use 80% green energy",
+	  "type": "ENERGY_PROPERTY",
+	  "implementationType": "MUST",
+	  "enabled": true,
+	  "dataCenterId": "AmazonEC2",
+	  "priority": 0,
+	  "target": {
+		"metric": "renewablePercentage",
+		"operator": "gt",
+		"value": 80
+	  },
+	  "timeFrame": {
+		"recurrentExpression": "0 0 0 ? * *",
+		"duration" : "P1D"
+	  },
+	  "priceModifiers" : [ {
+		"threshold" : "80 %",
+		"modifier" : "0 EUR/pp"
+	  }, {
+		"threshold" : "75 %",
+		"modifier": "-1 EUR/pp"
+	  } ]
+	} ]
+  } ]
+}

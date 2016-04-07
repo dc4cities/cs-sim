@@ -1,0 +1,38 @@
+{
+  "startAt": "2015-01-17T00:00:00",
+  "powerLoopInterval": 60,
+  "controlLoopInterval": 15,
+  "monitoringLoopInterval": 5,
+  "timeSlotWidth": 15,
+  "timeWindowWidth": 24,
+  "consolidationTimeout": 5,
+  "hdbUrl": "http://hackmeplz",
+  "hdbEnabled": true,
+  "companyCode": "DC4C",
+  "dataCenters": [ {
+    "name": "hp_milan",
+    "minPower": "363",
+    "maxPower": "584",
+    "aggressiveness" : 1,
+    "pue": 1,
+    "erdsList": [ {
+      "name": "hp_milan_grid",
+      "endpoint": "http://localhost:8180/dc4es-service"
+    }, {
+      "name": "hp_milan_pv",
+      "endpoint": "http://localhost:8280/dc4es-service"
+    } ],
+    "eascGroups": [ {
+      "name": "group1",
+      "groupWeight": 1,
+      "eascWeights": [ {
+        "eascName": "easc_hp",
+        "weight": 1
+      } ]
+    } ]
+  } ],
+  "eascList": [ {
+    "name": "easc_hp",
+    "endpoint": "http://localhost:9999"
+  } ]
+}

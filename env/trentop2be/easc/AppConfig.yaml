@@ -1,0 +1,62 @@
+!Application
+name: EASC-Trento
+activities:
+ - name: bend
+   businessUnit: Exam
+   relocability: no
+   businessBucketStream: yes
+   serviceLevelObjectives:
+    - cumulativeBusinessObjective: !amount '3000 Exam'
+      basePrice: !amount '600 EUR'
+      priceModifiers:
+       - threshold: !amount '3000 Exam'
+         modifier: !amount '0 EUR/Exam'
+       - threshold: !amount '0 Exam'
+         modifier: !amount '-10 EUR/Exam'
+   dataCenters:
+    - dataCenterName: cn_trento
+      defaultWorkingMode: WM0
+      workingModes:
+      - name: WM0
+        value: 0
+        actuator:
+         systemCommand: bin/localWMSwitch.sh WM0
+        performanceLevels:
+         - businessPerformance: !amount '0 Exam/min'
+           power: !amount '0 W'
+        transitions:
+        - target: WMMIN
+          performanceCost: !amount '32 Exam'
+        - target: WMMED
+          performanceCost: !amount '120 Exam'
+        - target: WMMAX
+          performanceCost: !amount '240 Exam'
+      - name: WMMIN
+        value: 1
+        actuator:
+         systemCommand: bin/localWMSwitch.sh WMMIN
+        performanceLevels:
+        - businessPerformance: !amount '4 Exam/min'
+          power: !amount '695.89 W'
+        transitions:
+        - target: WMMED
+          performanceCost: !amount '60 Exam'
+        - target: WMMAX
+          performanceCost: !amount '120 Exam'
+      - name: WMMED
+        value: 2
+        actuator: 
+         systemCommand: bin/localWMSwitch.sh WMMED
+        performanceLevels:
+        - businessPerformance: !amount '7.5 Exam/min'
+          power: !amount '1001.65 W'
+        transitions:
+        - target: WMMAX
+          performanceCost: !amount '15 Exam'
+      - name: WMMAX
+        value: 3
+        actuator:
+         systemCommand: bin/localWMSwitch.sh WMMAX
+        performanceLevels:
+        - businessPerformance: !amount '15 Exam/min'
+          power: !amount '2013 W'

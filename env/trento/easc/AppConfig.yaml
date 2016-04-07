@@ -1,0 +1,130 @@
+!Application
+name: EASC-Trento
+activities:
+- name: Report caching
+  businessUnit: Report
+  relocability: no
+  serviceLevelObjectives:
+  - cumulativeBusinessObjective: !amount '830 Report'
+    basePrice: !amount '830 EUR'
+    priceModifiers:
+        - threshold: !amount '830 Report'
+          modifier: !amount '0 EUR/Report'
+        - threshold: !amount '0 Report'
+          modifier: !amount '-2 EUR/Report'
+  dataCenters:
+  - dataCenterName: cn_trento
+    defaultWorkingMode: "WM0"
+    workingModes:
+    - name: "WM0"
+      value: 0
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM0"
+      performanceLevels:
+      - businessPerformance: !amount '0 Report/min'
+        power: !amount '19.5 W'
+      resources:
+      - !VM
+        name: vm-db
+      - !VM
+        name: vm-web
+      - !Server
+        name: node20-cmpt
+      - !Server
+        name: node18-ctrl
+    - name: "WM1"
+      value: 1
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM1"
+      performanceLevels:
+      - businessPerformance: !amount '0.535 Report/min'
+        power: !amount '665.8 W'
+      resources: 
+      - !VM
+        name: vm-db
+      - !VM
+        name: vm-web
+      - !Server
+        name: node20-cmpt
+      - !Server
+        name: node18-ctrl
+    - name: "WM4"
+      value: 4
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM4"
+      performanceLevels:
+      - businessPerformance: !amount '1.88 Report/min'
+        power: !amount '761.9 W'
+      resources: 
+      - !VM
+        name: vm-db
+      - !VM
+        name: vm-web
+      - !Server
+        name: node20-cmpt
+      - !Server
+        name: node18-ctrl
+    - name: "WM7"
+      value: 7
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM7"
+      performanceLevels:
+      - businessPerformance: !amount '3.00 Report/min'
+        power: !amount '844.4 W'
+      resources: 
+      - !VM
+        name: vm-db
+      - !VM
+        name: vm-web
+      - !Server
+        name: node20-cmpt
+      - !Server
+        name: node18-ctrl
+    - name: "WM10"
+      value: 10
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM10"
+      performanceLevels:
+      - businessPerformance: !amount '3.33 Report/min'
+        power: !amount '864.2 W'
+      resources:
+      - !VM
+        name: vm-db
+      - !VM
+        name: vm-web
+      - !Server
+        name: node20-cmpt
+      - !Server
+        name: node18-ctrl
+    - name: "WM13"
+      value: 13
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM13"
+      performanceLevels:
+      - businessPerformance: !amount '3.29 Report/min'
+        power: !amount '883.2 W'
+      resources: 
+      - !VM
+        name: vm-db
+      - !VM
+        name: vm-web
+      - !Server
+        name: node20-cmpt
+      - !Server
+        name: node18-ctrl
+    - name: "WM14"
+      value: 14
+      actuator:
+        systemCommand: "bin/WMSwitch.sh WM14"
+      performanceLevels:
+      - businessPerformance: !amount '3.34 Report/min'
+        power: !amount '879.8 W'
+      resources: 
+      - !VM
+        name: vm-db
+      - !VM
+        name: vm-web
+      - !Server
+        name: node20-cmpt
+      - !Server
+        name: node18-ctrl
